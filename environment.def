@@ -1,0 +1,44 @@
+Bootstrap: docker
+From: nvidia/cuda:12.1.0-runtime-ubuntu22.04
+Stage: build
+
+%environment
+    export LC_ALL=C
+    export PATH="/miniconda3/bin:$PATH"
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+
+    apt update -y
+    apt install -y curl
+
+    mkdir /miniconda3
+
+    curl https://repo.anaconda.com/miniconda/Miniconda3-py39_24.9.2-0-Linux-x86_64.sh -o conda_install.sh
+    sha256sum conda_install.sh
+    bash conda_install.sh -b -u -p /miniconda3
+
+    # Post-install
+    echo "export PATH=/miniconda3/bin:$PATH" >> ~/.bashrc
+    . /miniconda3/bin/activate
+
+    conda --version
+    conda install -y -c conda-forge pip
+    conda update --all
+
+    # Create environment
+    conda create -n torchenv python=3.10
+    conda activate torchenv
+    conda install pytorch==2.5.0 pytorch-cuda=12.4 -c pytorch -c nvidia
+    pip install tqdm
+    pip install numpy
+    pip install scipy
+    pip install torchdiffeq
+
+    # access with /miniconda3/envs/torchenv/bin/python
+    # or
+    # . /miniconda3/bin/activate torchenv
+    # and then `python`
+
+%runscript
+    . /miniconda3/bin/activate torchenv

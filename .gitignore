@@ -1,0 +1,9 @@
+/environment.sif
+**/*.png
+**/*.pdf
+**/*.json
+**/*.pyc
+**/*.csv
+**/*.tex
+.idea
+**/*.zip
