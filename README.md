@@ -28,7 +28,6 @@ It includes the following target distributions:
   * Radon (varying intercepts and slopes)
   * Synthetic item response theory
   * Stochastic volatility model
-  * $\phi^4$ lattice field theory target (with side lengths 8, 16, 32, 64, 128, and 256)
 
 Running the notebooks with the appropriate dependency versions will reproduce experiments from the paper "Empirical evaluation of normalizing flows in Markov Chain Monte Carlo" by Nabergoj and Štrumbelj (2024).
 
@@ -36,11 +35,22 @@ The package was designed to be used with the supporting [torchflows](https://git
 To test custom flow architectures, flow-based MCMC algorithms, or add new target distributions, please implement them using the framework provided in these packages.
 
 ## Citation
+
 If you use this code in your work, we kindly ask that you cite the accompanying paper:
+> [Nabergoj and Štrumbelj: Empirical evaluation of normalizing flows in Markov Chain Monte Carlo, 2024. arxiv:2412.17136.](https://arxiv.org/abs/2412.17136)
 
+BibTex entry:
+```
+@misc{nabergoj_nf_mcmc_evaluation_2024,
+    author = {Nabergoj, David and \v{S}trumbelj, Erik},
+	title = {Empirical evaluation of normalizing flows in {Markov} {Chain} {Monte} {Carlo}},
+	publisher = {arXiv},
+	month = dec,
+	year = {2024},
+	note = {arxiv:2412.17136}
+}
 ```
 
-```
 
 ## Setup
 We provide instructions on how to configure the repository for running the benchmark tests locally or on a cluster.
